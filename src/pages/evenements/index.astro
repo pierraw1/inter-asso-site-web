@@ -1,0 +1,86 @@
+---
+// src/pages/evenements/index.astro
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { Construction, Calendar, Home } from "@lucide/astro";
+---
+
+<Layout title="Événements">
+  <Header />
+
+  <main
+    class="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 py-16"
+  >
+    <div class="container mx-auto px-4">
+      <div class="max-w-2xl mx-auto text-center">
+        <!-- Icône animée -->
+        <div class="mb-8 flex justify-center">
+          <div class="relative">
+            <div
+              class="w-32 h-32 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center animate-pulse"
+            >
+              <Construction class="h-16 w-16 text-white" />
+            </div>
+            <!-- Cercles décoratifs -->
+            <div
+              class="absolute inset-0 w-32 h-32 border-4 border-purple-300 rounded-full animate-ping opacity-20"
+            >
+            </div>
+          </div>
+        </div>
+
+        <!-- Titre -->
+        <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+          Page en construction
+        </h1>
+
+        <!-- Sous-titre -->
+        <div
+          class="flex items-center justify-center gap-2 text-xl md:text-2xl text-gray-600 mb-8"
+        >
+          <Calendar class="h-6 w-6 text-purple-500" />
+          <p>Section Événements</p>
+        </div>
+
+        <!-- Description -->
+        <p class="text-lg text-gray-600 mb-12 leading-relaxed">
+          Nous travaillons actuellement sur cette page pour te présenter tous
+          nos événements. Cette section utilisera le système de blog d'Astro
+          pour te tenir informé de toutes nos activités !
+        </p>
+
+        <!-- Message encourageant -->
+        <div class="bg-white rounded-xl p-6 shadow-lg mb-12">
+          <p class="text-gray-700 mb-4">
+            En attendant, tu peux découvrir nos clubs et nos partenaires 👇
+          </p>
+        </div>
+
+        <!-- Boutons d'action -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/"
+            class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-pink-500 text-white px-8 py-4 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition-all shadow-lg"
+          >
+            <Home class="h-5 w-5" />
+            Retour à l'accueil
+          </a>
+          <a
+            href="/clubs"
+            class="inline-flex items-center justify-center gap-2 bg-white text-purple-600 border-2 border-purple-600 px-8 py-4 rounded-lg font-semibold hover:bg-purple-50 transition-all"
+          >
+            Découvrir nos clubs
+          </a>
+        </div>
+
+        <!-- Note temporelle -->
+        <p class="mt-12 text-sm text-gray-500">
+          Cette page sera bientôt disponible. Merci de ta patience ! 🚀
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

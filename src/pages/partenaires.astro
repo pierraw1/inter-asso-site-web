@@ -1,0 +1,231 @@
+---
+// src/pages/partenaires.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { Tag, CreditCard, MapPin, ExternalLink, Landmark } from '@lucide/astro';
+
+// Données des partenaires
+const partenaires = [
+  {
+    id: 1,
+    nom: 'BPGO',
+    categorie: 'Banque',
+    adresse: 'Lannion',
+    description: 'BPGO nous soutient dans la réalisation de nos projets et événements. Une banque engagée auprès des étudiants !',
+    reduction: 'Soutien',
+    typeReduction: 'support',
+    logo: '/images/partenaires/Logo-bpgo.webp'
+  },
+  {
+    id: 2,
+    nom: 'Le Truc',
+    categorie: 'Restaurant / Bar',
+    adresse: 'Lannion',
+    description: 'Profite de réductions étudiantes sur place en présentant ta carte. Un lieu convivial pour se retrouver entre amis !',
+    reduction: 'Réduc sur place',
+    typeReduction: 'carte',
+    logo: '/images/partenaires/Logo-Le-Truc.webp'
+  },
+  {
+    id: 3,
+    nom: 'Rosa Louise',
+    categorie: 'Restaurant',
+    adresse: '14 rue Gaspard Monge, 22300 Lannion',
+    description: 'Menu étudiant à 10€ : Cheeseburger, Pâtes au saumon ou Poke Bowl + Loburg 25cl à 2€ ou 50cl à 4€. Ouvert 7j/7 !',
+    reduction: 'Menu 10€',
+    typeReduction: 'carte',
+    logo: '/images/partenaires/Logo-Rosa-Louise.webp',
+    lien: 'https://www.rosa-louise.fr',
+    tel: '02 96 91 11 91',
+    instagram: '@rosa_louise_lannion'
+  },
+  {
+    id: 4,
+    nom: 'V and B',
+    categorie: 'Cave / Bar',
+    adresse: 'Lannion',
+    description: 'Des réductions étudiantes sur demande. Le spécialiste des bières et vins pour tes soirées !',
+    reduction: 'Sur demande',
+    typeReduction: 'demande',
+    logo: '/images/partenaires/Logo-VandB.webp'
+  },
+  {
+    id: 5,
+    nom: 'Le Chapelier',
+    categorie: 'Bar',
+    adresse: 'Lannion',
+    description: 'Partenaire officiel pour la vente de shoots lors de nos événements. Ambiance garantie !',
+    reduction: 'Partenaire',
+    typeReduction: 'support',
+    logo: '/images/partenaires/Logo-Le-Chapelier.webp'
+  }
+];
+---
+
+<Layout title="Nos Partenaires">
+  <Header />
+  
+  <main>
+    <!-- Hero section -->
+    <section class="bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 text-white py-16 md:py-24">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6">
+          Nos Partenaires
+        </h1>
+        <p class="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8">
+          Découvre nos partenaires lannionnais et profite d'avantages exclusifs !
+        </p>
+        
+        <!-- Badge info -->
+        <div class="inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full">
+          <CreditCard class="h-6 w-6" />
+          <span class="font-semibold">Présente ta carte étudiante pour bénéficier des avantages</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Liste des partenaires -->
+    <section class="py-16 md:py-24 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-7xl mx-auto space-y-8">
+          
+          {partenaires.map((partenaire, index) => (
+            <article 
+              class={`bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all ${index % 2 === 1 ? 'ml-auto' : ''}`}
+            >
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+                
+                <!-- Logo (colonne gauche) -->
+                <div class="lg:col-span-3 bg-gray-50 flex items-center justify-center p-8 lg:p-12">
+                  <img 
+                    src={partenaire.logo} 
+                    alt={`Logo ${partenaire.nom}`}
+                    class="max-w-full max-h-32 object-contain"
+                  />
+                </div>
+
+                <!-- Contenu principal (colonne centrale) -->
+                <div class="lg:col-span-6 p-8 lg:p-12 flex flex-col justify-center">
+                  <!-- Catégorie + Badge réduction -->
+                  <div class="flex items-center gap-3 mb-4">
+                    <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded-full">
+                      {partenaire.categorie}
+                    </span>
+                    <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">
+                      {partenaire.reduction}
+                    </span>
+                  </div>
+
+                  <!-- Nom -->
+                  <h3 class="text-3xl font-bold text-gray-900 mb-3">
+                    {partenaire.nom}
+                  </h3>
+
+                  <!-- Adresse -->
+                  {partenaire.adresse && (
+                    <div class="flex items-start gap-2 text-sm text-gray-600 mb-4">
+                      <MapPin class="h-4 w-4 flex-shrink-0 mt-0.5 text-purple-500" />
+                      <span>{partenaire.adresse}</span>
+                    </div>
+                  )}
+
+                  <!-- Description -->
+                  <p class="text-gray-600 mb-4 leading-relaxed">
+                    {partenaire.description}
+                  </p>
+
+                  <!-- Informations complémentaires -->
+                  <div class="space-y-2 text-sm">
+                    {partenaire.tel && (
+                      <p class="text-gray-700">
+                        📞 <a href={`tel:${partenaire.tel.replace(/\s/g, '')}`} class="hover:text-purple-600 font-medium">{partenaire.tel}</a>
+                      </p>
+                    )}
+                    {partenaire.instagram && (
+                      <p class="text-gray-700">
+                        📷 <span class="font-medium">{partenaire.instagram}</span>
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <!-- Informations d'utilisation (colonne droite) -->
+                <div class="lg:col-span-3 bg-gradient-to-br from-purple-50 to-pink-50 p-8 lg:p-12 flex flex-col justify-center">
+                  <h4 class="font-bold text-gray-900 mb-4">Comment en profiter ?</h4>
+                  
+                  {partenaire.typeReduction === 'carte' && (
+                    <div class="space-y-3">
+                      <div class="flex items-start gap-3">
+                        <CreditCard class="h-5 w-5 text-purple-600 flex-shrink-0 mt-0.5" />
+                        <p class="text-sm text-gray-700">
+                          Présente ta carte étudiante sur place
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {partenaire.typeReduction === 'support' && (
+                    <div class="space-y-3">
+                      <div class="flex items-start gap-3">
+                        <Landmark class="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                        <p class="text-sm text-gray-700">
+                          Partenaire officiel de l'Inter-Asso
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {partenaire.typeReduction === 'demande' && (
+                    <div class="space-y-3">
+                      <div class="flex items-start gap-3">
+                        <Tag class="h-5 w-5 text-orange-600 flex-shrink-0 mt-0.5" />
+                        <p class="text-sm text-gray-700">
+                          Demande la réduction étudiante en magasin
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Lien site web */}
+                  {partenaire.lien && (
+                    <a
+                      href={partenaire.lien}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="mt-4 inline-flex items-center gap-2 text-purple-600 hover:text-purple-700 font-semibold text-sm"
+                    >
+                      <ExternalLink class="h-4 w-4" />
+                      <span>Visiter le site</span>
+                    </a>
+                  )}
+                </div>
+
+              </div>
+            </article>
+          ))}
+
+        </div>
+
+        <!-- Call to action -->
+        <div class="max-w-7xl mx-auto mt-16 text-center bg-gradient-to-r from-purple-600 to-pink-500 rounded-2xl p-8 md:p-12 text-white">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Tu es commerçant à Lannion ?
+          </h2>
+          <p class="text-lg md:text-xl mb-8 text-white/90">
+            Deviens partenaire de l'Inter-Asso et touche plus de 500 étudiants !
+          </p>
+          <a
+            href="/contact"
+            class="inline-flex items-center gap-2 bg-white text-purple-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
+          >
+            Nous contacter
+            <ExternalLink class="h-5 w-5" />
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
