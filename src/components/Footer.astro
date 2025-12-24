@@ -1,6 +1,6 @@
 ---
 // src/components/Footer.astro
-import { Facebook, Instagram, Mail, MapPin } from "@lucide/astro";
+import { Facebook, Instagram, Mail, MapPin, Github } from "@lucide/astro";
 ---
 
 <footer class="bg-gray-900 text-white py-12">
@@ -116,12 +116,26 @@ import { Facebook, Instagram, Mail, MapPin } from "@lucide/astro";
     </div>
 
     <!-- Ligne de séparation -->
-    <div
-      class="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm"
-    >
-      <p>
-        © {new Date().getFullYear()} Inter-Asso IUT Lannion. Tous droits réservés.
-      </p>
+    <div class="border-t border-gray-800 pt-8">
+      <div
+        class="flex flex-col md:flex-row items-center justify-between gap-4 text-gray-400 text-sm"
+      >
+        <!-- Copyright -->
+        <p>
+          © {new Date().getFullYear()} Inter-Asso IUT Lannion. Tous droits réservés.
+        </p>
+
+        <!-- Lien GitHub -->
+        <a
+          href="https://github.com/pierraw1/inter-asso_website"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 hover:text-white transition-colors group"
+        >
+          <Github class="h-5 w-5 group-hover:scale-110 transition-transform" />
+          <span>Contribuer au projet sur GitHub</span>
+        </a>
+      </div>
     </div>
   </div>
 </footer>
