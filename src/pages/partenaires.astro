@@ -3,62 +3,67 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { Tag, CreditCard, MapPin, ExternalLink, Landmark } from '@lucide/astro';
+import { Tag, CreditCard, MapPin, ExternalLink, Landmark, Gift } from '@lucide/astro';
 
 // Données des partenaires
 const partenaires = [
   {
     id: 1,
-    nom: 'BPGO',
+    nom: 'Banque Populaire Grand Ouest',
     categorie: 'Banque',
     adresse: 'Lannion',
-    description: 'BPGO nous soutient dans la réalisation de nos projets et événements. Une banque engagée auprès des étudiants !',
-    reduction: 'Soutien',
-    typeReduction: 'support',
-    logo: '/images/partenaires/Logo-bpgo.webp'
+    description: 'Partenaire officiel de l\'Inter-Asso, la BPGO propose des offres bancaires spéciales étudiants et nous soutient dans nos projets. Offres à l\'ouverture de compte et avantages exclusifs comme des places de ski offertes aux étudiants. Pour plus d\'informations sur leurs offres, contacte-nous !',
+    reduction: 'Offres étudiants',
+    typeReduction: 'info',
+    logo: '/images/partenaires/Logo-bpgo.webp',
+    codePromo: null
   },
   {
     id: 2,
     nom: 'Le Truc',
-    categorie: 'Restaurant / Bar',
+    categorie: 'Bar à jeux / Café',
     adresse: 'Lannion',
-    description: 'Profite de réductions étudiantes sur place en présentant ta carte. Un lieu convivial pour se retrouver entre amis !',
+    description: 'Bar à jeux convivial pour se détendre entre amis ! Profite d\'un large choix de cocktails avec ou sans alcool, de jeux de société et d\'une ambiance chaleureuse. Réductions étudiantes variables sur place sur présentation de ta carte.',
     reduction: 'Réduc sur place',
     typeReduction: 'carte',
-    logo: '/images/partenaires/Logo-Le-Truc.webp'
+    logo: '/images/partenaires/Logo-Le-Truc.webp',
+    codePromo: null
   },
   {
     id: 3,
     nom: 'Rosa Louise',
     categorie: 'Restaurant',
     adresse: '14 rue Gaspard Monge, 22300 Lannion',
-    description: 'Menu étudiant à 10€ : Cheeseburger, Pâtes au saumon ou Poke Bowl + Loburg 25cl à 2€ ou 50cl à 4€. Ouvert 7j/7 !',
+    description: 'Restaurant à 2 minutes à pied de l\'IUT ! Menu étudiant à 10€ au choix : Cheeseburger, Pâtes au saumon ou Poke Bowl. Boissons Loburg à 2€ (25cl) ou 4€ (50cl). Ouvert 7j/7. Partenaire de nos événements dont la soirée d\'intégration de l\'IUT !',
     reduction: 'Menu 10€',
     typeReduction: 'carte',
     logo: '/images/partenaires/Logo-Rosa-Louise.webp',
     lien: 'https://www.rosa-louise.fr',
     tel: '02 96 91 11 91',
-    instagram: '@rosa_louise_lannion'
+    instagram: '@rosa_louise_lannion',
+    codePromo: null
   },
   {
     id: 4,
     nom: 'V and B',
     categorie: 'Cave / Bar',
     adresse: 'Lannion',
-    description: 'Des réductions étudiantes sur demande. Le spécialiste des bières et vins pour tes soirées !',
-    reduction: 'Sur demande',
-    typeReduction: 'demande',
-    logo: '/images/partenaires/Logo-VandB.webp'
+    description: 'Le spécialiste des bières et vins à Lannion ! Réductions sur place avec le code "MP". V and B nous accompagne également lors de nos soirées en fournissant les boissons. L\'endroit idéal pour tes apéros et soirées entre amis !',
+    reduction: 'Code : MP',
+    typeReduction: 'code',
+    logo: '/images/partenaires/Logo-VandB.webp',
+    codePromo: 'MP'
   },
   {
     id: 5,
     nom: 'Le Chapelier',
     categorie: 'Bar',
     adresse: 'Lannion',
-    description: 'Partenaire officiel pour la vente de shoots lors de nos événements. Ambiance garantie !',
-    reduction: 'Partenaire',
-    typeReduction: 'support',
-    logo: '/images/partenaires/Logo-Le-Chapelier.webp'
+    description: 'Bar partenaire de l\'Inter-Asso pour l\'organisation de nos soirées ! Réductions sur place pour les étudiants. Le Chapelier nous accompagne lors des soirées shoots et accueille même des DJs qui mixent sur place. Ambiance garantie !',
+    reduction: 'Partenaire soirées',
+    typeReduction: 'carte',
+    logo: '/images/partenaires/Logo-Le-Chapelier.webp',
+    codePromo: null
   }
 ];
 ---
@@ -108,7 +113,7 @@ const partenaires = [
                 <!-- Contenu principal (colonne centrale) -->
                 <div class="lg:col-span-6 p-8 lg:p-12 flex flex-col justify-center">
                   <!-- Catégorie + Badge réduction -->
-                  <div class="flex items-center gap-3 mb-4">
+                  <div class="flex items-center gap-3 mb-4 flex-wrap">
                     <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded-full">
                       {partenaire.categorie}
                     </span>
@@ -147,6 +152,13 @@ const partenaires = [
                         📷 <span class="font-medium">{partenaire.instagram}</span>
                       </p>
                     )}
+                    {partenaire.lien && (
+                      <p class="text-gray-700">
+                        🌐 <a href={partenaire.lien} target="_blank" rel="noopener noreferrer" class="hover:text-purple-600 font-medium">
+                          {partenaire.lien.replace('https://', '').replace('www.', '')}
+                        </a>
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -165,39 +177,33 @@ const partenaires = [
                     </div>
                   )}
                   
-                  {partenaire.typeReduction === 'support' && (
+                  {partenaire.typeReduction === 'info' && (
                     <div class="space-y-3">
                       <div class="flex items-start gap-3">
-                        <Landmark class="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                        <Gift class="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
                         <p class="text-sm text-gray-700">
-                          Partenaire officiel de l'Inter-Asso
+                          Contacte-nous pour plus d'infos sur les offres
                         </p>
                       </div>
                     </div>
                   )}
                   
-                  {partenaire.typeReduction === 'demande' && (
+                  {partenaire.typeReduction === 'code' && partenaire.codePromo && (
                     <div class="space-y-3">
                       <div class="flex items-start gap-3">
                         <Tag class="h-5 w-5 text-orange-600 flex-shrink-0 mt-0.5" />
-                        <p class="text-sm text-gray-700">
-                          Demande la réduction étudiante en magasin
-                        </p>
+                        <div class="flex-1">
+                          <p class="text-sm text-gray-700 mb-2">
+                            Utilise le code promo :
+                          </p>
+                          <div class="bg-white px-4 py-2 rounded-lg border-2 border-orange-300">
+                            <code class="font-mono font-bold text-orange-600 text-lg">
+                              {partenaire.codePromo}
+                            </code>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  )}
-
-                  {/* Lien site web */}
-                  {partenaire.lien && (
-                    <a
-                      href={partenaire.lien}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="mt-4 inline-flex items-center gap-2 text-purple-600 hover:text-purple-700 font-semibold text-sm"
-                    >
-                      <ExternalLink class="h-4 w-4" />
-                      <span>Visiter le site</span>
-                    </a>
                   )}
                 </div>
 
