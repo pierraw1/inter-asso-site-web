@@ -45,7 +45,7 @@ function formatTime(date: Date): string {
   <Header />
 
   <main>
-    <!-- Hero avec image (ancienne version) -->
+    <!-- Hero avec image -->
     {
       event.data.image && (
         <section class="relative h-96 overflow-hidden">
@@ -74,7 +74,7 @@ function formatTime(date: Date): string {
       )
     }
 
-    <!-- Hero sans image (ancienne version) -->
+    <!-- Hero sans image -->
     {
       !event.data.image && (
         <section class="bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 text-white py-16 md:py-24">
@@ -165,21 +165,10 @@ function formatTime(date: Date): string {
               }
             </div>
 
-            <!-- Contenu markdown - Pleine largeur -->
+            <!-- Contenu markdown - Pleine largeur avec styles -->
             <div class="lg:col-span-12">
               <article
-                class="bg-white rounded-2xl p-8 md:p-12 shadow-lg prose prose-lg max-w-none
-                prose-headings:text-gray-900 prose-headings:font-bold
-                prose-h2:text-3xl prose-h2:mt-10 prose-h2:mb-6 prose-h2:text-purple-600
-                prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
-                prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-5 prose-p:text-base
-                prose-a:text-purple-600 prose-a:font-medium prose-a:underline hover:prose-a:text-purple-700
-                prose-strong:text-gray-900 prose-strong:font-bold
-                prose-ul:my-6 prose-ul:text-gray-700
-                prose-ol:my-6 prose-ol:text-gray-700
-                prose-li:mb-3 prose-li:leading-relaxed
-                prose-img:rounded-2xl prose-img:my-10 prose-img:shadow-xl
-                prose-blockquote:border-l-4 prose-blockquote:border-purple-500 prose-blockquote:bg-purple-50 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:italic prose-blockquote:my-8"
+                class="markdown-content bg-white rounded-2xl p-8 md:p-12 shadow-lg"
               >
                 <Content />
               </article>
@@ -192,3 +181,156 @@ function formatTime(date: Date): string {
 
   <Footer />
 </Layout>
+
+<style is:global>
+  /* Styles pour le contenu markdown */
+  .markdown-content {
+    color: #374151;
+    line-height: 1.75;
+  }
+
+  .markdown-content h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #7c3aed;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e5e7eb;
+  }
+
+  .markdown-content h2:first-child {
+    margin-top: 0;
+  }
+
+  .markdown-content h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .markdown-content h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .markdown-content p {
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .markdown-content strong {
+    font-weight: 700;
+    color: #111827;
+  }
+
+  .markdown-content em {
+    font-style: italic;
+  }
+
+  .markdown-content a {
+    color: #7c3aed;
+    text-decoration: underline;
+    font-weight: 500;
+  }
+
+  .markdown-content a:hover {
+    color: #6d28d9;
+  }
+
+  .markdown-content ul,
+  .markdown-content ol {
+    margin: 1.5rem 0;
+    padding-left: 1.75rem;
+  }
+
+  .markdown-content ul {
+    list-style-type: disc;
+  }
+
+  .markdown-content ol {
+    list-style-type: decimal;
+  }
+
+  .markdown-content li {
+    margin-bottom: 0.75rem;
+    line-height: 1.75;
+    padding-left: 0.5rem;
+  }
+
+  .markdown-content li::marker {
+    color: #7c3aed;
+  }
+
+  .markdown-content blockquote {
+    border-left: 4px solid #7c3aed;
+    background: #f3f4f6;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #4b5563;
+  }
+
+  .markdown-content code {
+    background: #f3f4f6;
+    color: #7c3aed;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+    font-family: "Courier New", monospace;
+  }
+
+  .markdown-content pre {
+    background: #1f2937;
+    color: #f9fafb;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .markdown-content pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+  }
+
+  .markdown-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .markdown-content hr {
+    border: none;
+    border-top: 2px solid #e5e7eb;
+    margin: 2rem 0;
+  }
+
+  .markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+
+  .markdown-content th {
+    background: #f3f4f6;
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #e5e7eb;
+  }
+
+  .markdown-content td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+</style>
