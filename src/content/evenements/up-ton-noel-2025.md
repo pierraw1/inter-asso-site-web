@@ -1,5 +1,5 @@
 ---
-title: "Up ton Noël 2026"
+title: "Up ton Noël 2025"
 description: "La soirée étudiante de Noël de Lannion"
 date: 2025-12-11T08:00:00
 lieu: "Salle des Ursulines"
