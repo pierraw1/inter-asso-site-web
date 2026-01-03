@@ -25,7 +25,7 @@ Avant de commencer, assure-toi d'avoir installé :
 ### 1. Clone le repository
 
 ```bash
-git clone https://github.com/pierraw1/inter-asso_website.git
+git clone https://github.com/pierraw1/inter-asso-site-web.git
 cd site-web
 ```
 
@@ -85,7 +85,7 @@ Clique sur le bouton "Fork" en haut à droite de la page GitHub pour créer ta p
 ### 2. Clone ton fork
 
 ```bash
-git clone https://github.com/pierraw1/inter-asso_website.git
+git clone https://github.com/pierraw1/inter-asso-site-web.git
 cd site-web
 ```
 
@@ -221,7 +221,7 @@ La page sera automatiquement accessible sur `/ma-page`.
 
 ## 🐛 Signaler un bug
 
-Si tu trouves un bug, ouvre une [issue sur GitHub](https://github.com/pierraw1/inter-asso_website) avec :
+Si tu trouves un bug, ouvre une [issue sur GitHub](https://github.com/pierraw1/inter-asso-site-web) avec :
 - Une description claire du problème
 - Les étapes pour reproduire le bug
 - Des captures d'écran si possible
