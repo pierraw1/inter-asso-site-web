@@ -3,7 +3,7 @@ title: "Soirée d'intégration MP"
 description: "La soirée d'intégration pour tous les étudiants MP1, MP2 et MP3 !"
 date: 2025-09-18T22:00:00
 lieu: "Salle polyvalente du Relan, Trégastel"
-club: "Inter-Asso"
+club: "BDE MP"
 image: "/images/evenements/image-fete.webp"
 tags: ["soirée", "intégration", "MP"]
 draft: false
